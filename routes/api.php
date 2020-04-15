@@ -26,8 +26,20 @@ Route::post('login', 'PetugasController@login');
 Route::get('user','PetugasController@getAuthenticatedUser');
 
 
-//pelanggan
+//penyewa
 Route::post('/simpan_penyewa','PenyewaController@store')->middleware('jwt.verify');
 Route::put('/ubah_penyewa/{id}','PenyewaController@update')->middleware('jwt.verify');
 Route::delete('/hapus_penyewa/{id}','PenyewaController@hapus')->middleware('jwt.verify');
 Route::get('/tampil_penyewa','PenyewaController@tampil')->middleware('jwt.verify');
+
+//mobil
+Route::post('/simpan_mobil','MobilController@store')->middleware('jwt.verify');
+Route::put('/ubah_mobil/{id}','MobilController@update')->middleware('jwt.verify');
+Route::delete('/hapus_mobil/{id}','MobilController@hapus')->middleware('jwt.verify');
+Route::get('/tampil_mobil','MobilController@tampil')->middleware('jwt.verify');
+
+//jenis
+Route::post('/simpan_jenis','JenisController@store')->middleware('jwt.verify');
+Route::put('/ubah_jenis/{id}','JenisController@update')->middleware('jwt.verify');
+Route::delete('/hapus_jenis/{id}','JenisController@hapus')->middleware('jwt.verify');
+Route::get('/tampil_jenis','JenisController@tampil')->middleware('jwt.verify');

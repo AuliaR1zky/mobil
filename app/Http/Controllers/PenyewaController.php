@@ -27,7 +27,7 @@ class PenyewaController extends Controller
             return Response()->json($validator->errors());
         }
 
-        $simpan=penyewa::create([
+        $simpan=Penyewa::create([
             'nama_penyewa'=>$req->nama_penyewa,
             'alamat'=>$req->alamat,
             'telp'=>$req->telp,
@@ -58,7 +58,7 @@ class PenyewaController extends Controller
             return Response()->json($validator->errors());
         }
 
-        $ubah=penyewa::where('id', $id)->update([
+        $ubah=Penyewa::where('id', $id)->update([
             'nama_penyewa'=>$req->nama_penyewa,
             'alamat'=>$req->alamat,
             'telp'=>$req->telp,
@@ -75,7 +75,7 @@ class PenyewaController extends Controller
 
     public function hapus($id){
         if(Auth::user()->level=="admin"){
-        $hapus=penyewa::where('id', $id)->delete();
+        $hapus=Penyewa::where('id', $id)->delete();
         if($hapus){
             return Response()->json(['status'=>1]);
         } else {
@@ -85,7 +85,7 @@ class PenyewaController extends Controller
 }
     public function tampil(){
         if(Auth::user()->level=="admin"){
-      $data_penyewa = penyewa::get();
+      $data_penyewa = Penyewa::get();
       $count = $data_penyewa->count();
       $arr_data = array();
       foreach ($data_penyewa as $dt_penyewa){
